@@ -11,10 +11,12 @@ async function mostrarServicios() {
     try {
         const resultado = await fetch('./servicios.json');
         const db = await resultado.json();
+        //Object destructuring
         const {servicios} = db;
 
         //Generar el html
         servicios.forEach(servicio => {
+            //Object destructuring
             const { id, nombre, precio } = servicio;
 
             //Dom scripting
@@ -58,16 +60,21 @@ function seleccionarServicio(e){
 
     //Forzar que el elemento al cual le damos click sea el DIV
     if(e.target.tagName == 'P'){
+        //Si seleccionamos un parrafo, entonces le asignamos a elemento
+        //El valor del elemento padre, en este caso es el .DIV
         elemento = e.target.parentElement;
     }
     else {
         elemento = e.target;
     }
 
+    //Comprobamos si un elemento contiene una clase '.seleccionado'
     if(elemento.classList.contains('seleccionado')){
+        //Si ya existe, entonces la eliminamos
         elemento.classList.remove('seleccionado');
     }
     else {
+        //Si no la tiene, la agregamos en el dom
         elemento.classList.add('seleccionado');
     }
     
